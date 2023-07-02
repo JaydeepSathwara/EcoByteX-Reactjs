@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/EcoByteX-Reactjs/static/css/main.679b1edb.css",
+    "main.js": "/EcoByteX-Reactjs/static/js/main.0e5fa984.js",
+    "index.html": "/EcoByteX-Reactjs/index.html",
+    "main.679b1edb.css.map": "/EcoByteX-Reactjs/static/css/main.679b1edb.css.map",
+    "main.0e5fa984.js.map": "/EcoByteX-Reactjs/static/js/main.0e5fa984.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.679b1edb.css",
+    "static/js/main.0e5fa984.js"
+  ]
+}
