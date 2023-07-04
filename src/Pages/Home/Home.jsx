@@ -1,29 +1,47 @@
 import React, { useState } from 'react';
-import Navbar from '../../Components/Navbar/Navbar';
-import ArticleList from '../../Components/ArticleList/ArticleList';
 import SearchBar from '../../Components/SearchBar/SearchBar.jsx';
+import Navbar from '../../Components/Navbar/Navbar.jsx';
 import ImageSlider from '../../Components/ImageSlider/ImageSlider.jsx';
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import {articles} from '../../articles.js';
+import ArticleList from '../../Components/ArticleList/ArticleList.jsx';
+import { articles } from '../../articles.js';
 
 const Home = () => {
-
-  const [article, setArticle] = useState([]);
+  const [article, setArticle] = useState(articles);
   const [searchKey, setSearchKey] = useState('');
+  const categoryList = [...new Set(articles.map(article => article.category))];
 
- 
+  // Search submit
+  const handleSearchBar = (e) => {
+    e.preventDefault();
+    handleSearchResults();
+  };
+
+  const handleSearchResults = () => {
+    const allArticles = articles;
+    const filteredArticles = allArticles.filter((article) =>
+      article.category.toLowerCase().includes(searchKey.toLowerCase().trim())
+    );
+    setArticle(filteredArticles);
+  };
+
+  const handleSearchKey = (value) => {
+    setSearchKey(value);
+  };
 
   return (
     <div>
       <Navbar />
-      {/* search component */}
-      <SearchBar />
-      {/* category */}
-      <ImageSlider />
-      <ArticleList articles={articles} />
+      <SearchBar
+        CategoryList={categoryList}
+        value={searchKey}
+        formSubmit={handleSearchBar}
+        handleSearchKey={handleSearchKey}
+        />
+      {!searchKey && <ImageSlider />}
+      <ArticleList articles={article} />
     </div>
-  )
-}
 
-export default Home
+  );
+};
+
+export default Home;

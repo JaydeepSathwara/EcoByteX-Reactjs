@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './SearchBar.css';
+import Select from 'react-select';
 
-const Search = () => {
+const SearchBar = ({ CategoryList, formSubmit, value, handleSearchKey, clearSearch }) => {
     const [placeholder, setPlaceholder] = useState("");
-    const [searchKey, setSearchKey] = useState("")
-    
+
     const placeholderTexts = [
         'Search By Category',
         'Search By Question',
@@ -22,9 +22,9 @@ const Search = () => {
                     currentTextIndex = 0;
                     currentCharIndex = 0;
                 }
-    
+
                 setPlaceholder(currentText.slice(0, currentCharIndex + 1));
-    
+
                 if (currentCharIndex === currentText.length - 1) {
                     setTimeout(eraseEffect, 2000);
                 } else {
@@ -60,17 +60,23 @@ const Search = () => {
 
     async function handleSearch(e) {
         e.preventDefault();
-        console.log(searchKey);
     }
+
+    const options = [
+        { value: '', label: 'All' },
+        ...CategoryList.map((category) => ({ value: category, label: category }))
+      ];
+    const selectedOption = value ? { value: value, label: value } : null;
 
     return (
         <div className='searchBar-wrap'>
-            <form onSubmit={handleSearch}>
-                <input
-                    type='text'
+            <form onSubmit={formSubmit}>
+                <Select
+                    className='search-input-field'
+                    options={options}
                     placeholder={placeholder}
-                    value={searchKey}
-                    onChange={e => setSearchKey(e.target.value)}
+                    value={selectedOption}
+                    onChange={(selectedOption) => handleSearchKey(selectedOption?.value)}
                 />
                 <button>Go</button>
             </form>
@@ -78,4 +84,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default SearchBar;

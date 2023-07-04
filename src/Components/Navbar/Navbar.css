@@ -163,3 +163,9 @@
     margin-left: 8px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .nav-search-Input {
+    width: 50px;
+  } 
+}

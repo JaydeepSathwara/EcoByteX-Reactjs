@@ -11,7 +11,7 @@
     align-items: center;
   }
   
-  .searchBar-wrap input {
+  .searchBar-wrap .search-input-field {
     background-color: #f0f0f0;
     outline: none;
     border: none;
@@ -24,16 +24,18 @@
   }
   
   .searchBar-wrap button {
+    margin-left: 20px;
     outline: none;
     border: none;
-    padding: 0.3rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     background-color: #0f52ba;
     color: #fff;
+    cursor: pointer;
   }
   
   @media screen and (max-width: 600px) {
-      .searchBar-wrap input {
+      .searchBar-wrap .search-input-field {
           width: 300px;
         }
   }
